@@ -3,6 +3,7 @@ import shopIcon from 'assets/img/icons/shop.svg';
 import facebookIcon from 'assets/img/icons/facebook.svg';
 import twitterIcon from 'assets/img/icons/twitter.svg';
 import instagramIcon from 'assets/img/icons/instagram.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
@@ -36,9 +37,9 @@ function Header() {
                     <nav className="navbar navbar-expand navbar-light bg-light mt-3">
                         <div className="container d-flex justify-content-center">
                             <div className="navbar-nav">
-                                <a className="nav-link mx-3 active" aria-current="page" href="#">Store</a>
-                                <a className="nav-link mx-3" href="#">About Us</a>
-                                <a className="nav-link mx-3" href="#">Contact</a>
+                                <Link className="nav-link mx-3 active" aria-current="page" to="/">Store</Link>
+                                <Link className="nav-link mx-3" to="/about-us">About Us</Link>
+                                <Link className="nav-link mx-3" to="/contact">Contact</Link>
                             </div>
                         </div>
                     </nav>
