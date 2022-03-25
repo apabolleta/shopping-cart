@@ -1,22 +1,18 @@
 import './App.css';
 import Header from './layouts/header/Header';
 import Footer from './layouts/footer/Footer';
-import { Routes, Route } from 'react-router-dom';
-import Store from 'pages/store/Store';
-import AboutUs from 'pages/about/AboutUs';
-import Contact from 'pages/contact/Contact';
+import AppRoutes from 'pages/routes';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Store />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <AppRoutes />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
