@@ -15,6 +15,9 @@ function Products(props) {
                                 price={p.price}
                                 createDate={p.createDate.toLocaleDateString()}
                                 img={p.img}
+                                count={props.cart.filter(el => el.id === p.id).length}
+                                onClickAdd={props.onClickAdd}
+                                onClickRemove={props.onClickRemove}
                             />
                         </div>
                     ))}
