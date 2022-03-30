@@ -1,3 +1,4 @@
+import './Products.css';
 import Product from 'components/product/Product';
 
 function Products(props) {
