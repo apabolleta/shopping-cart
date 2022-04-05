@@ -12,15 +12,15 @@ function Footer() {
                 <div className="container p-4 pb-0">
                     <section className="mb-4">
                         {/* Facebook */}
-                        <a className="btn btn-outline-light m-1" href="#" role="button">
+                        <a className="btn btn-outline-light m-1" href="https://www.facebook.com/" role="button">
                             <FacebookIcon />
                         </a>
                         {/* Twitter */}
-                        <a className="btn btn-outline-light m-1" href="#" role="button">
+                        <a className="btn btn-outline-light m-1" href="https://twitter.com/" role="button">
                             <TwitterIcon />
                         </a>
                         {/* Instagram */}
-                        <a className="btn btn-outline-light m-1" href="#" role="button">
+                        <a className="btn btn-outline-light m-1" href="https://www.instagram.com/" role="button">
                             <InstagramIcon />
                         </a>
                     </section>
