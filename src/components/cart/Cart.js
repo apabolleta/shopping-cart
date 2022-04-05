@@ -1,6 +1,7 @@
 import { ReactComponent as CartIcon } from 'assets/img/icons/cart.svg';
 import { ReactComponent as MinusCartIcon } from 'assets/img/icons/minus-cart.svg';
 import { ReactComponent as PlusCartIcon } from 'assets/img/icons/plus-cart.svg';
+import OrderForm from 'forms/order/OrderForm';
 
 function Cart(props) {
     const products = props.cart.map((p) =>
@@ -22,7 +23,7 @@ function Cart(props) {
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{props.cart.length}</span>
                 }
             </button>
-            {/* Modal */}
+            {/* Cart Modal */}
             <div className="modal fade" id="cartModal" tabIndex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
@@ -43,7 +44,28 @@ function Cart(props) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Continue buying</button>
-                            <button type="button" className="btn btn-primary">Make an order</button>
+                            {props.cart.length > 0
+                            ?
+                                <button type="button" className="btn btn-primary" data-bs-target="#orderModal" data-bs-toggle="modal">Make an order</button>
+                            :
+                                <button type="button" className="btn btn-primary" disabled>Make an order</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Order Form Modal */}
+            <div className="modal fade" id="orderModal" tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title fs-3" id="orderModalLabel">Order form</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <OrderForm
+                                cart={props.cart}
+                            />
                         </div>
                     </div>
                 </div>
