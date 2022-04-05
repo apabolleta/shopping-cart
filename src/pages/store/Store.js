@@ -1,5 +1,5 @@
 import './Store.css';
-import Search from 'components/search/Search';
+import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
 
@@ -51,7 +51,11 @@ class Store extends React.Component {
     render() {
       return (
           <div className="store">
-            <Search />
+            <StoreHeader
+              cart={this.state.cart}
+              onClickAdd={this.addToCart}
+              onClickRemove={this.removeFromCart}
+            />
             <Products
               products={this.state.products}
               cart={this.state.cart}
