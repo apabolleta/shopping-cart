@@ -4,9 +4,11 @@ import { ReactComponent as PlusCartIcon } from 'assets/img/icons/plus-cart.svg';
 import OrderForm from 'forms/order/OrderForm';
 
 function Cart(props) {
-    const products = props.cart.map((p) =>
+    const products = [...new Set(props.cart)].map((p) =>
         <Product
+            key={p.id}
             product={p}
+            count={props.cart.filter(el => el.id === p.id).length}
             onClickAdd={props.onClickAdd}
             onClickRemove={props.onClickRemove}
         />
@@ -89,6 +91,7 @@ function Product(props) {
                     <button className="btn" onClick={() => props.onClickRemove(props.product.id)}>
                         <MinusCartIcon className="text-danger" width="24" height="24" />
                     </button>
+                    <span className="p-3">{props.count}</span>
                     <button className="btn" onClick={() => props.onClickAdd(props.product.id)}>
                         <PlusCartIcon className="text-success" width="24" height="24" />
                     </button>
