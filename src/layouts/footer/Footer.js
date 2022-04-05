@@ -1,7 +1,7 @@
 import './Footer.css';
-import facebookIcon from 'assets/img/icons/facebook.svg';
-import twitterIcon from 'assets/img/icons/twitter.svg';
-import instagramIcon from 'assets/img/icons/instagram.svg';
+import { ReactComponent as FacebookIcon } from 'assets/img/icons/facebook.svg';
+import { ReactComponent as TwitterIcon } from 'assets/img/icons/twitter.svg';
+import { ReactComponent as InstagramIcon } from 'assets/img/icons/instagram.svg';
 
 function Footer() {
     return (
@@ -13,15 +13,15 @@ function Footer() {
                     <section className="mb-4">
                         {/* Facebook */}
                         <a className="btn btn-outline-light m-1" href="#" role="button">
-                            <img src={facebookIcon} alt="Facebook" />
+                            <FacebookIcon />
                         </a>
                         {/* Twitter */}
                         <a className="btn btn-outline-light m-1" href="#" role="button">
-                            <img src={twitterIcon} alt="Twitter" />
+                            <TwitterIcon />
                         </a>
                         {/* Instagram */}
                         <a className="btn btn-outline-light m-1" href="#" role="button">
-                            <img src={instagramIcon} alt="Twitter" />
+                            <InstagramIcon />
                         </a>
                     </section>
                 </div>

@@ -1,6 +1,6 @@
 import './Product.css';
-import plusIcon from 'assets/img/icons/plus.svg';
-import minusIcon from 'assets/img/icons/minus.svg';
+import { ReactComponent as PlusIcon } from 'assets/img/icons/plus.svg';
+import { ReactComponent as MinusIcon } from 'assets/img/icons/minus.svg';
 
 function Product(props) {
     return (
@@ -13,9 +13,9 @@ function Product(props) {
                     <span className="fs-2">{props.price || 0}€</span>
                 </div>
                 <div className="d-flex justify-content-end p-2">
-                    <button className="btn btn-outline-danger mx-1" onClick={() => props.onClickRemove(props.id)}><img src={minusIcon} alt="minus-icon" /></button>
+                    <button className="btn btn-outline-danger mx-1" onClick={() => props.onClickRemove(props.id)}><MinusIcon /></button>
                     <div className="d-flex align-items-center justify-content-center border border-secondary rounded w-25"><span className="d-inline-block align-middle">{props.count || '-'}</span></div>
-                    <button className="btn btn-outline-success mx-1" onClick={() => props.onClickAdd(props.id)}><img src={plusIcon} alt="plus-icon" /></button>
+                    <button className="btn btn-outline-success mx-1" onClick={() => props.onClickAdd(props.id)}><PlusIcon /></button>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">{"Added on " + props.createDate}</small>

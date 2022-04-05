@@ -1,8 +1,8 @@
 import './Header.css';
-import shopIcon from 'assets/img/icons/shop.svg';
-import facebookIcon from 'assets/img/icons/facebook.svg';
-import twitterIcon from 'assets/img/icons/twitter.svg';
-import instagramIcon from 'assets/img/icons/instagram.svg';
+import { ReactComponent as ShopIcon } from 'assets/img/icons/shop.svg';
+import { ReactComponent as FacebookIcon } from 'assets/img/icons/facebook.svg';
+import { ReactComponent as TwitterIcon } from 'assets/img/icons/twitter.svg';
+import { ReactComponent as InstagramIcon } from 'assets/img/icons/instagram.svg';
 import { Link } from 'react-router-dom';
 
 function Header() {
@@ -14,15 +14,15 @@ function Header() {
                 <div className="d-flex justify-content-end">
                     {/* Facebook */}
                     <a className="btn btn-light m-1" href="#" role="button">
-                        <img src={facebookIcon} alt="Facebook" />
+                        <FacebookIcon />
                     </a>
                     {/* Twitter */}
                     <a className="btn btn-light m-1" href="#" role="button">
-                        <img src={twitterIcon} alt="Twitter" />
+                        <TwitterIcon />
                     </a>
                     {/* Instagram */}
                     <a className="btn btn-light m-1" href="#" role="button">
-                        <img src={instagramIcon} alt="Twitter" />
+                        <InstagramIcon />
                     </a>
                 </div>
             </div>
@@ -30,7 +30,7 @@ function Header() {
             {/* Main header */}
             <div className="container-fluid bg-light border-bottom pt-5">
                 <div className="container text-center">
-                    <img src={shopIcon} alt="Shop" width="96" height="96" />
+                    <ShopIcon width="96" height="96" />
                     <h1>Shopping Cart</h1>
                     <span className="text-muted">The place where you can find it...</span>
                     {/* Navbar */}
