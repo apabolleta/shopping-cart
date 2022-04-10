@@ -2,15 +2,15 @@ import './Store.css';
 import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
+import db from 'config/Firebase';
+import {collection, getDocs} from 'firebase/firestore';
 
 class Store extends React.Component {
     constructor(props) {
       super(props);
 
-      this.products = this.getProducts();
-
       this.state = {
-        products: this.products.slice(),
+        products: [],
         cart: [],
       };
 
@@ -19,19 +19,15 @@ class Store extends React.Component {
       this.removeFromCart = this.removeFromCart.bind(this);
     }
 
-    getProducts() {
-      const product = (i) => {
-        return {
-          id: i,
-          name: "Product name",
-          description: "Product description",
-          price: 100,
-          createDate: new Date(),
-          img: "https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/7b66dec9de06441aae52a60501798199_9366/zapatilla-gazelle.jpg",
-        };
+    componentDidMount() {
+      const getProducts = async () => {
+        const snapShot = await getDocs(collection(db, "products"));
+        const data = snapShot.docs.map(d => d.data());
+        this.setState({
+          products: data,
+        });
       };
-
-      return Array(15).fill(null).map((val, i) => product(i));
+      getProducts();
     }
 
     filterProducts(expr) {

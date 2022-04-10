@@ -13,7 +13,7 @@ function Products(props) {
                                 name={p.name}
                                 description={p.description}
                                 price={p.price}
-                                createDate={p.createDate.toLocaleDateString()}
+                                createDate={p.createDate.toDate().toLocaleDateString()}
                                 img={p.img}
                                 count={props.cart.filter(el => el.id === p.id).length}
                                 onClickAdd={props.onClickAdd}
