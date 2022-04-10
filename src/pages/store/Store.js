@@ -2,8 +2,7 @@ import './Store.css';
 import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
-import db from 'config/Firebase';
-import {collection, getDocs} from 'firebase/firestore';
+import getProducts from 'api/Firebase';
 
 class Store extends React.Component {
     constructor(props) {
@@ -20,14 +19,13 @@ class Store extends React.Component {
     }
 
     componentDidMount() {
-      const getProducts = async () => {
-        const snapShot = await getDocs(collection(db, "products"));
-        const data = snapShot.docs.map(d => d.data());
+      const getProductsEx = async () => {
+        const products = await getProducts();
         this.setState({
-          products: data,
+          products: products,
         });
       };
-      getProducts();
+      getProductsEx();
     }
 
     filterProducts(expr) {
