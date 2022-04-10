@@ -6,11 +6,15 @@ import React from 'react';
 class Store extends React.Component {
     constructor(props) {
       super(props);
+
+      this.products = this.getProducts();
+
       this.state = {
-        products: this.getProducts(),
+        products: this.products.slice(),
         cart: [],
       };
 
+      this.filterProducts = this.filterProducts.bind(this);
       this.addToCart = this.addToCart.bind(this);
       this.removeFromCart = this.removeFromCart.bind(this);
     }
@@ -28,6 +32,12 @@ class Store extends React.Component {
       };
 
       return Array(15).fill(null).map((val, i) => product(i));
+    }
+
+    filterProducts(expr) {
+      this.setState((state, props) => ({
+        products: this.products.filter(p => (p.name + p.description).includes(expr)),
+      }));
     }
 
     addToCart(id) {
@@ -55,6 +65,7 @@ class Store extends React.Component {
               cart={this.state.cart}
               onClickAdd={this.addToCart}
               onClickRemove={this.removeFromCart}
+              onClickFilter={this.filterProducts}
             />
             <Products
               products={this.state.products}

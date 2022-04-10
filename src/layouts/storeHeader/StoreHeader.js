@@ -10,7 +10,9 @@ function StoreHeader(props) {
                     <CurrencySelector />
                 </div>
                 <div className="col-6">
-                    <Search />
+                    <Search
+                        onClickFilter={props.onClickFilter}
+                    />
                 </div>
                 <div className="col-3 d-flex justify-content-start">
                     <Cart
