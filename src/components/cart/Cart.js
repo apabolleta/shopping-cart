@@ -87,7 +87,7 @@ function Product(props) {
                     <h5>{props.product.name}</h5>
                     <p>{props.product.description}</p>
                 </div>
-                <div className="col-2 my-auto">
+                <div className="col-2 my-auto d-flex flex-column flex-lg-row">
                     <button className="btn" onClick={() => props.onClickRemove(props.product.id)}>
                         <MinusCartIcon className="text-danger" width="24" height="24" />
                     </button>
