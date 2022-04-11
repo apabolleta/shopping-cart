@@ -3,6 +3,7 @@ import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
 import { getProducts, newOrder } from 'api/Firebase';
+import { currencyCodes, CurrencyContext } from 'api/Currency';
 
 class Store extends React.Component {
     constructor(props) {
@@ -11,8 +12,10 @@ class Store extends React.Component {
       this.state = {
         products: [],
         cart: [],
+        currency: currencyCodes.EUR,
       };
 
+      this.changeCurrency = this.changeCurrency.bind(this);
       this.filterProducts = this.filterProducts.bind(this);
       this.addToCart = this.addToCart.bind(this);
       this.removeFromCart = this.removeFromCart.bind(this);
@@ -27,6 +30,12 @@ class Store extends React.Component {
         });
       };
       getProductsEx();
+    }
+
+    changeCurrency(code) {
+      this.setState({
+        currency: currencyCodes[code],
+      });
     }
 
     filterProducts(expr) {
@@ -67,6 +76,7 @@ class Store extends React.Component {
 
     render() {
       return (
+        <CurrencyContext.Provider value={{currency: this.state.currency, changeCurrency:this.changeCurrency}}>
           <div className="store">
             <StoreHeader
               cart={this.state.cart}
@@ -82,6 +92,7 @@ class Store extends React.Component {
               onClickRemove={this.removeFromCart}
             />
           </div>
+        </CurrencyContext.Provider>
       );
     }
 }

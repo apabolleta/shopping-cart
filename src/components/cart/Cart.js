@@ -2,6 +2,7 @@ import { ReactComponent as CartIcon } from 'assets/img/icons/cart.svg';
 import { ReactComponent as MinusCartIcon } from 'assets/img/icons/minus-cart.svg';
 import { ReactComponent as PlusCartIcon } from 'assets/img/icons/plus-cart.svg';
 import OrderForm from 'forms/order/OrderForm';
+import { CurrencyContext, toCurrency } from 'api/Currency';
 
 function Cart(props) {
     const products = [...new Set(props.cart)].map((p) =>
@@ -79,29 +80,31 @@ function Cart(props) {
 
 function Product(props) {
     return (
-        <>
-            <div className="row my-1 py-1 text-center">
-                <div className="col-2 my-auto">
-                    <img src={props.product.img} className="img-thumbnail" alt="product-img" />
+        <CurrencyContext.Consumer>
+            {value =>
+                <div className="row my-1 py-1 text-center">
+                    <div className="col-2 my-auto">
+                        <img src={props.product.img} className="img-thumbnail" alt="product-img" />
+                    </div>
+                    <div className="col text-start my-auto">
+                        <h5>{props.product.name}</h5>
+                        <p>{props.product.description}</p>
+                    </div>
+                    <div className="col-2 my-auto d-flex flex-column flex-lg-row">
+                        <button className="btn" onClick={() => props.onClickRemove(props.product.id)}>
+                            <MinusCartIcon className="text-danger" width="24" height="24" />
+                        </button>
+                        <span className="p-3">{props.count}</span>
+                        <button className="btn" onClick={() => props.onClickAdd(props.product.id)}>
+                            <PlusCartIcon className="text-success" width="24" height="24" />
+                        </button>
+                    </div>
+                    <div className="col-2 my-auto">
+                        <span>{toCurrency(props.product.price || 0.00, value.currency)}{value.currency.symbol}</span>
+                    </div>
                 </div>
-                <div className="col text-start my-auto">
-                    <h5>{props.product.name}</h5>
-                    <p>{props.product.description}</p>
-                </div>
-                <div className="col-2 my-auto d-flex flex-column flex-lg-row">
-                    <button className="btn" onClick={() => props.onClickRemove(props.product.id)}>
-                        <MinusCartIcon className="text-danger" width="24" height="24" />
-                    </button>
-                    <span className="p-3">{props.count}</span>
-                    <button className="btn" onClick={() => props.onClickAdd(props.product.id)}>
-                        <PlusCartIcon className="text-success" width="24" height="24" />
-                    </button>
-                </div>
-                <div className="col-2 my-auto">
-                    <span>{props.product.price}€</span>
-                </div>
-            </div>
-        </>
+            }
+        </CurrencyContext.Consumer>
     )
 }
 
@@ -112,16 +115,18 @@ function Total(props) {
     });
 
     return (
-        <>
-            <div className="row border-top mt-5 pt-3">
-                <div className="col text-start">
-                    <span className="fs-5 fw-bold">TOTAL</span>
+        <CurrencyContext.Consumer>
+            {value =>
+                <div className="row border-top mt-5 pt-3">
+                    <div className="col text-start">
+                        <span className="fs-5 fw-bold">TOTAL</span>
+                    </div>
+                    <div className="col-2 text-center">
+                        <span className="fs-5">{toCurrency(totalPrice || 0.00, value.currency)}{value.currency.symbol}</span>
+                    </div>
                 </div>
-                <div className="col-2 text-center">
-                    <span className="fs-5">{totalPrice}€</span>
-                </div>
-            </div>
-        </>
+            }
+        </CurrencyContext.Consumer>
     )
 }
 
