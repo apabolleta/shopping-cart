@@ -1,5 +1,4 @@
 import './Store.css';
-import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
 import { getProducts, newOrder } from 'api/Firebase';
@@ -19,6 +18,7 @@ class Store extends React.Component {
       this.filterProducts = this.filterProducts.bind(this);
       this.addToCart = this.addToCart.bind(this);
       this.removeFromCart = this.removeFromCart.bind(this);
+      this.addNewOrder = this.addNewOrder.bind(this);
     }
 
     componentDidMount() {
@@ -26,7 +26,7 @@ class Store extends React.Component {
         const products = await getProducts();
         this.products = products.slice();
         this.setState({
-          products: products,
+          products: products.slice(),
         });
       };
       getProductsEx();
@@ -66,9 +66,8 @@ class Store extends React.Component {
       const newOrderEx = async () => {
         try {
           await newOrder(data);
-          alert("Done");
         } catch (error) {
-          alert(error);
+          console.log(error);
         }
       }
       newOrderEx();
@@ -78,18 +77,13 @@ class Store extends React.Component {
       return (
         <CurrencyContext.Provider value={{currency: this.state.currency, changeCurrency:this.changeCurrency}}>
           <div className="store">
-            <StoreHeader
-              cart={this.state.cart}
-              onClickAdd={this.addToCart}
-              onClickRemove={this.removeFromCart}
-              onClickFilter={this.filterProducts}
-              onClickNewOrder={this.addNewOrder}
-            />
             <Products
               products={this.state.products}
               cart={this.state.cart}
               onClickAdd={this.addToCart}
               onClickRemove={this.removeFromCart}
+              onClickFilter={this.filterProducts}
+              onClickNewOrder={this.addNewOrder}
             />
           </div>
         </CurrencyContext.Provider>
