@@ -76,7 +76,7 @@ class Store extends React.Component {
     render() {
       return (
         <CurrencyContext.Provider value={{currency: this.state.currency, changeCurrency:this.changeCurrency}}>
-          <div className="store">
+          <div className="page-content store">
             <Products
               products={this.state.products}
               cart={this.state.cart}

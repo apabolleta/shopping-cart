@@ -2,7 +2,7 @@ import './Contact.css';
 
 function Contact() {
     return (
-        <div>
+        <div className="page-content contact">
             <div className="container mt-4 mb-3">
                 <h2>Contact Us</h2>
                 <hr/>
