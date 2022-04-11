@@ -21,11 +21,6 @@ function Products(props) {
                             />
                         </div>
                     ))}
-                    {!props.products.length > 0 &&
-                        <div className="container text-center">
-                            <span>No products found</span>
-                        </div>
-                    }
                 </div>
             </div>
         </div>
