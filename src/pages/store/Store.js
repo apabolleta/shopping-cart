@@ -2,7 +2,7 @@ import './Store.css';
 import StoreHeader from 'layouts/storeHeader/StoreHeader';
 import Products from 'layouts/products/Products';
 import React from 'react';
-import getProducts from 'api/Firebase';
+import { getProducts, newOrder } from 'api/Firebase';
 
 class Store extends React.Component {
     constructor(props) {
@@ -52,6 +52,18 @@ class Store extends React.Component {
       });
     }
 
+    addNewOrder(data) {
+      const newOrderEx = async () => {
+        try {
+          await newOrder(data);
+          alert("Done");
+        } catch (error) {
+          alert(error);
+        }
+      }
+      newOrderEx();
+    }
+
     render() {
       return (
           <div className="store">
@@ -60,6 +72,7 @@ class Store extends React.Component {
               onClickAdd={this.addToCart}
               onClickRemove={this.removeFromCart}
               onClickFilter={this.filterProducts}
+              onClickNewOrder={this.addNewOrder}
             />
             <Products
               products={this.state.products}

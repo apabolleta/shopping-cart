@@ -19,6 +19,7 @@ function StoreHeader(props) {
                         cart={props.cart}
                         onClickAdd={props.onClickAdd}
                         onClickRemove={props.onClickRemove}
+                        onClickNewOrder={props.onClickNewOrder}
                     />
                 </div>
             </div>

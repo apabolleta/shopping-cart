@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbL8KYn4I7Bo01I5DQgtBjHXEIppc-OzA",
@@ -14,10 +14,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Get products from DDBB
 async function getProducts() {
   const snapShot = await getDocs(collection(db, "products"));
   const products = snapShot.docs.map(d => d.data());
   return products;
 }
 
-export default getProducts;
+// Add new order to DDBB
+async function newOrder(data) {
+  await addDoc(collection(db, "orders"), data);
+}
+
+export { getProducts, newOrder };

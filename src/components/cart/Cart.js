@@ -67,6 +67,7 @@ function Cart(props) {
                         <div className="modal-body">
                             <OrderForm
                                 cart={props.cart}
+                                onClickNewOrder={props.onClickNewOrder}
                             />
                         </div>
                     </div>
