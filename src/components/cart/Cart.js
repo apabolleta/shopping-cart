@@ -37,10 +37,10 @@ function Cart(props) {
                         <div className="modal-body">
                             {props.cart.length > 0
                             ?
-                                <>
+                                <div className="cart-details">
                                     {products}
                                     {total}
-                                </>
+                                </div>
                             :
                                 <span className="text-muted">No products selected</span>
                             }
