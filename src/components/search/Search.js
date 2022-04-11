@@ -2,7 +2,7 @@ import './Search.css';
 import { useState } from 'react';
 
 function Search(props) {
-    const [expr, setExpr] = useState();
+    const [expr, setExpr] = useState("");
 
     const submitHandler = (e) => {
         e.preventDefault();
