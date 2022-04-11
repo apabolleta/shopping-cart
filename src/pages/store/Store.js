@@ -21,6 +21,7 @@ class Store extends React.Component {
     componentDidMount() {
       const getProductsEx = async () => {
         const products = await getProducts();
+        this.products = products.slice();
         this.setState({
           products: products,
         });
