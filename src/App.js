@@ -5,11 +5,11 @@ import AppRoutes from 'pages/Routes';
 
 function App() {
   return (
-    <div className="app">
+    <>
       <Header />
       <AppRoutes />
       <Footer />
-    </div>
+    </>
   );
 }
 

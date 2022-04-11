@@ -5,7 +5,7 @@ import { ReactComponent as InstagramIcon } from 'assets/img/icons/instagram.svg'
 
 function Footer() {
     return (
-        <div>
+        <>
             {/* Footer */}
             <footer className="bg-dark text-center text-white">
                 {/* Social icons */}
@@ -31,7 +31,7 @@ function Footer() {
                     <a className="text-white" href="https://github.com/apabolleta">@apabolleta</a>
                 </div>
             </footer>
-        </div>
+        </>
     )
 }
 

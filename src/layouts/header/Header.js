@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
     return (
-        <div>
+        <>
             {/* Secondary header */}
             <div className="container-fluid bg-light border-bottom">
                 {/* Social icons */}
@@ -45,7 +45,7 @@ function Header() {
                     </nav>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
