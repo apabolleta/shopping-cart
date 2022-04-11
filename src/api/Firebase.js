@@ -17,7 +17,7 @@ const db = getFirestore(app);
 // Get products from DDBB
 async function getProducts() {
   const snapShot = await getDocs(collection(db, "products"));
-  const products = snapShot.docs.map(d => d.data());
+  const products = snapShot.docs.map(d => Object.assign({}, d.data(), {id: d.id}));
   return products;
 }
 
