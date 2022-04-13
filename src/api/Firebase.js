@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc, getDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbL8KYn4I7Bo01I5DQgtBjHXEIppc-OzA",
@@ -23,7 +23,10 @@ async function getProducts() {
 
 // Add new order to DDBB
 async function newOrder(data) {
-  await addDoc(collection(db, "orders"), data);
+  const docRef = await addDoc(collection(db, "orders"), data);
+  const docSnap = await getDoc(docRef);
+  const order = Object.assign({}, docSnap.data(), {id: docSnap.id});
+  return order;
 }
 
 export { getProducts, newOrder };
