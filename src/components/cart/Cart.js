@@ -30,7 +30,7 @@ function Cart(props) {
             <div className="modal fade" id="cartModal" tabIndex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
-                        <div className="modal-header">
+                        <div className="modal-header bg-light">
                             <h5 className="modal-title fs-3" id="cartModalLabel">Product Cart</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -61,7 +61,7 @@ function Cart(props) {
             <div className="modal fade" id="orderModal" tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
-                        <div className="modal-header">
+                        <div className="modal-header bg-light">
                             <h5 className="modal-title fs-3" id="orderModalLabel">Order form</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
