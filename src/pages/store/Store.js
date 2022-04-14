@@ -1,8 +1,11 @@
 import './Store.css';
-import Products from 'layouts/products/Products';
 import React from 'react';
 import { getProducts, newOrder } from 'api/Firebase';
 import { currencyCodes, CurrencyContext } from 'api/Currency';
+import Search from 'components/search/Search';
+import Cart from 'components/cart/Cart';
+import CurrencySelector from 'components/currencySelector/CurrencySelector';
+import Product from 'components/product/Product';
 
 class Store extends React.Component {
     constructor(props) {
@@ -11,7 +14,9 @@ class Store extends React.Component {
       this.state = {
         products: [],
         cart: [],
+        orders: [],
         currency: currencyCodes.EUR,
+        error: null,
       };
 
       this.changeCurrency = this.changeCurrency.bind(this);
@@ -65,9 +70,14 @@ class Store extends React.Component {
     addNewOrder(data) {
       const newOrderEx = async () => {
         try {
-          await newOrder(data);
+          const order = await newOrder(data);
+          this.setState((state, props) => ({
+            orders: state.orders.concat([order]),
+          }));
         } catch (error) {
-          console.log(error);
+          this.setState({
+            error: error,
+          });
         }
       }
       newOrderEx();
@@ -77,14 +87,44 @@ class Store extends React.Component {
       return (
         <CurrencyContext.Provider value={{currency: this.state.currency, changeCurrency:this.changeCurrency}}>
           <div className="page-content store">
-            <Products
-              products={this.state.products}
-              cart={this.state.cart}
-              onClickAdd={this.addToCart}
-              onClickRemove={this.removeFromCart}
-              onClickFilter={this.filterProducts}
-              onClickNewOrder={this.addNewOrder}
-            />
+            <div className="container my-5">
+              <div className="row my-3 py-2">
+                <div className="col-3 d-flex justify-content-end">
+                  <CurrencySelector />
+                </div>
+                <div className="col-6">
+                  <Search
+                      onClickFilter={this.filterProducts}
+                  />
+                </div>
+                <div className="col-3 d-flex justify-content-start">
+                  <Cart
+                      cart={this.state.cart}
+                      onClickAdd={this.addToCart}
+                      onClickRemove={this.removeFromCart}
+                      onClickNewOrder={this.addNewOrder}
+                      error={this.state.error}
+                  />
+                </div>
+              </div>
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-5 gy-3 g-1">
+                {this.state.products.map((p) => (
+                  <div className="col" key={p.id}>
+                    <Product
+                        id={p.id}
+                        name={p.name}
+                        description={p.description}
+                        price={p.price}
+                        createDate={p.createDate.toDate().toLocaleDateString()}
+                        img={p.img}
+                        count={this.state.cart.filter(el => el.id === p.id).length}
+                        onClickAdd={this.addToCart}
+                        onClickRemove={this.removeFromCart}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </CurrencyContext.Provider>
       );

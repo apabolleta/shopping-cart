@@ -31,11 +31,6 @@ function OrderForm(props) {
                     {props.error}
                 </div>
             }
-            {props.success &&
-                <div className="alert alert-success">
-                    {props.success}
-                </div>
-            }
             <form onSubmit={submitHandler} className="p-3">
                 <label className="d-block form-label">
                     Name*

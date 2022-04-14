@@ -15,8 +15,6 @@ function Cart(props) {
         />
     );
 
-    const total = <Total cart={props.cart} />
-
     return (
         <div className="cart">
             {/* Button trigger modal */}
@@ -37,10 +35,12 @@ function Cart(props) {
                         <div className="modal-body">
                             {props.cart.length > 0
                             ?
-                                <div className="cart-details">
-                                    {products}
-                                    {total}
-                                </div>
+                                <>
+                                    <div className="cart-details">
+                                        {products}
+                                    </div>
+                                    <Total cart={props.cart} />
+                                </>
                             :
                                 <span className="text-muted">No products selected</span>
                             }
@@ -69,6 +69,7 @@ function Cart(props) {
                             <OrderForm
                                 cart={props.cart}
                                 onClickNewOrder={props.onClickNewOrder}
+                                error={props.error}
                             />
                         </div>
                     </div>
