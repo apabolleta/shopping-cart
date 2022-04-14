@@ -59,7 +59,10 @@ function OrderForm(props) {
                     <textarea className="form-control" value={note} onChange={(e) => setNote(e.target.value)}/>
                 </label>
                 <input type="hidden" value={order} />
-                <input type="submit" className="btn btn-primary float-end" value="Finish" />
+                <div className="text-end">
+                    <button type="button" className="btn btn-secondary mx-1" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" className="btn btn-primary" value="Finish" />
+                </div>
             </form>
         </>
     );

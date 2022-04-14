@@ -30,7 +30,6 @@ function Cart(props) {
                     <div className="modal-content">
                         <div className="modal-header bg-light">
                             <h5 className="modal-title fs-3" id="cartModalLabel">Product Cart</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             {props.cart.length > 0
@@ -58,12 +57,11 @@ function Cart(props) {
                 </div>
             </div>
             {/* Order Form Modal */}
-            <div className="modal fade" id="orderModal" tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div className="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header bg-light">
                             <h5 className="modal-title fs-3" id="orderModalLabel">Order form</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             {props.success
@@ -72,7 +70,7 @@ function Cart(props) {
                                     <div className="alert alert-success">
                                         <span>Your order was completed successfully (order ID: <span className="fw-bold">{props.orders.at(-1).id}</span>).</span>
                                     </div>
-                                    <button className="btn btn-primary float-right" data-bs-dismiss="modal" onClick={props.onClickReset}>Continue buying</button>
+                                    <button className="btn btn-primary float-end" data-bs-dismiss="modal" onClick={props.onClickReset}>Continue buying</button>
                                 </>
                             :
                                 <OrderForm
