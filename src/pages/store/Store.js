@@ -16,6 +16,7 @@ class Store extends React.Component {
         cart: [],
         orders: [],
         currency: currencyCodes.EUR,
+        success: null,
         error: null,
       };
 
@@ -24,6 +25,7 @@ class Store extends React.Component {
       this.addToCart = this.addToCart.bind(this);
       this.removeFromCart = this.removeFromCart.bind(this);
       this.addNewOrder = this.addNewOrder.bind(this);
+      this.resetStore = this.resetStore.bind(this);
     }
 
     componentDidMount() {
@@ -73,6 +75,7 @@ class Store extends React.Component {
           const order = await newOrder(data);
           this.setState((state, props) => ({
             orders: state.orders.concat([order]),
+            success: true,
           }));
         } catch (error) {
           this.setState({
@@ -81,6 +84,14 @@ class Store extends React.Component {
         }
       }
       newOrderEx();
+    }
+
+    resetStore() {
+      this.setState({
+        cart: [],
+        success: null,
+        error: null,
+      });
     }
 
     render() {
@@ -100,9 +111,12 @@ class Store extends React.Component {
                 <div className="col-3 d-flex justify-content-start">
                   <Cart
                       cart={this.state.cart}
+                      orders={this.state.orders}
                       onClickAdd={this.addToCart}
                       onClickRemove={this.removeFromCart}
                       onClickNewOrder={this.addNewOrder}
+                      onClickReset={this.resetStore}
+                      success={this.state.success}
                       error={this.state.error}
                   />
                 </div>

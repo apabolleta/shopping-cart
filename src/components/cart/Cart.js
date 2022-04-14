@@ -66,11 +66,21 @@ function Cart(props) {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <OrderForm
-                                cart={props.cart}
-                                onClickNewOrder={props.onClickNewOrder}
-                                error={props.error}
-                            />
+                            {props.success
+                            ?
+                                <>
+                                    <div className="alert alert-success">
+                                        <span>Your order was completed successfully (order ID: <span className="fw-bold">{props.orders.at(-1).id}</span>).</span>
+                                    </div>
+                                    <button className="btn btn-primary float-right" data-bs-dismiss="modal" onClick={props.onClickReset}>Continue buying</button>
+                                </>
+                            :
+                                <OrderForm
+                                    cart={props.cart}
+                                    onClickNewOrder={props.onClickNewOrder}
+                                    error={props.error}
+                                />
+                            }
                         </div>
                     </div>
                 </div>
