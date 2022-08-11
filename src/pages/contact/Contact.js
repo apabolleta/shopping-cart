@@ -6,12 +6,7 @@ function Contact() {
             <div className="container mt-4 mb-3">
                 <h2>Contact Us</h2>
                 <hr/>
-                <p>
-                    Asier Pabolleta Martorell (<a href="https://github.com/apabolleta">@apabolleta</a>)
-                </p>
-                <ul>
-                    <li><a href="mailto:asier.pabolleta@gmail.com">asier.pabolleta@gmail.com</a></li>
-                </ul>
+                <p>Asier Pabolleta Martorell {'<'}<a href="mailto:apabolleta@gmail.com">apabolleta@gmail.com</a>{'>'}</p>
             </div>
         </div>
     )
